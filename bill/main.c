@@ -1,27 +1,34 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-
-
-
 bool userIDlogIn(int customerID){
-
-    return true;
     
-    if(customerID){
-        return false;
+    int users[] = {123, 456, 111};
+    
+    int arrLen = sizeof users / sizeof users[0];
+    
+    for(int i = 0; i <= arrLen; i++){
+        // printf("%d \n",users[i]);
+        if(users[i] == customerID){
+            return true;
+        }
     }
+    
+    return false;
+
+    // if(customerID){
+    //     return false;
+    // }
     // return true;
 }
-
 
 float determineChargeAndUnit(float unitConsumed) {
     
     if(unitConsumed > 199 && unitConsumed < 250){
         return 1.50;
-    }else if(unitConsumed >= 250 && unitConsumed < 450){
+    }else if(unitConsumed < 450){
         return 1.60;
-    }else if(unitConsumed >= 450 && unitConsumed < 600){
+    }else if(unitConsumed < 600){
         return 1.85;
     }else if(unitConsumed > 600){
         return 2.00;
@@ -29,7 +36,6 @@ float determineChargeAndUnit(float unitConsumed) {
         return 0;
     }
 }
-
 
 float calculateUnitCharge(float unitConsumed, float charge){
     return unitConsumed*charge;
@@ -43,8 +49,6 @@ float totalCustomerBull(float surChargeValue, float initalBill){
     return surChargeValue+initalBill;
 }
 
-
-
 int main() {
     int customerID;
     
@@ -55,20 +59,17 @@ int main() {
     float initalBill;
     float CustomerTotalBIll;
     
-    
     printf("User ID: ");
     scanf("%d", &customerID);
         
-    
     if(!userIDlogIn(customerID)){
-        printf("Acess denied. . .");
+        printf("User ID does not exist. . .");
     }else{
         
         while(unitConsumed<200){
             
             printf("Input Units: ");
             scanf(" %f", &unitConsumed);
-        
         }
         
         unitCharges = determineChargeAndUnit(unitConsumed);
@@ -78,7 +79,7 @@ int main() {
             
             surChargeValue = surCharge(initalBill);
             
-            printf("%.2f", surChargeValue);
+            // printf("%.2f", surChargeValue);
         }else if(initalBill < 100){
             printf("minimum bill should be P100");
         }
